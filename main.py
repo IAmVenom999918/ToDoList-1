@@ -3,10 +3,12 @@ import csv
 from playsound import playsound # pip install playsound
 
 databasePath = 'ToDoList-1/required files/databasecsv.csv'
+buttonSoundPath = 'ToDoList-1/required files/Instant Sound Buttons 180.mp3'
 # file = open('ToDoList-1/databasecsv.csv', 'a+')
 # csvFileReader = csv.reader(file)
 # csvFileWriter = csv.writer(file)
 # file.close()
+
 
 # BACK END
 
@@ -18,7 +20,7 @@ class Task:
         self.due_date = due_date
 
 def button_click_sound():
-    playsound('ToDoList-1/required files/Instant Sound Buttons 180.mp3')
+    playsound(buttonSoundPath)
 
 def addTask(title, description, due_date):
     taskId = 1
@@ -35,23 +37,48 @@ def addTask(title, description, due_date):
     
     print(f'Successfully Added {a.title}')
 
-
-
+def removeTask(taskId):
+    with open(databasePath, 'r', newline='') as file:
+        csvFileReader = csv.reader(file)
+        data = list(csvFileReader)
+        for i in range(len(data)):
+            if data[i][0] == taskId:
+                data.pop(i)
+                break
+    # Write the modified data back to the CSV file
+    with open(databasePath, 'w', newline='') as file:
+        csvFileWriter = csv.writer(file)
+        csvFileWriter.writerows(data)
 
 
 # FRONT END
 
-windowGeometery = '400x600'
+windowGeometery = '400x400'
 windowsResizeable = True
 
 def ViewScreen():
+    file = open(databasePath, 'r')
+    csvFileReader = csv.reader(file)
     v = Tk()
     v.title('View Tasks')
-    v.geometry(windowGeometery)
+    v.geometry('600x600')
     v.resizable(windowsResizeable, windowsResizeable)
-    backToMainScreenButton = Button(v, text="Back",width=10, command=lambda:[button_click_sound(),v.destroy(), mainScreen()])
-    backToMainScreenButton.pack()
+
+    scrollbar = Scrollbar(v)
+    scrollbar.pack( side = RIGHT, fill = Y )
+    mylist = Listbox(v, yscrollcommand = scrollbar.set,width=100)
+
+    for line in csvFileReader:
+        mylist.insert(END, f"Task Id. {line[0]} : {line[3]} : {line[1]} : {line[2]}")
+    mylist.pack()
+    scrollbar.config( command = mylist.yview )
+
+    # Back Button
+    Button(v, text="Back",width=10, command=lambda:[button_click_sound(),v.destroy(), mainScreen()]).pack()
+
+
     v.mainloop()
+    file.close()
 
 def AddScreen():
     a = Tk()
@@ -93,8 +120,19 @@ def RemoveScreen():
     r.title('Remove Tasks')
     r.geometry(windowGeometery)
     r.resizable(windowsResizeable, windowsResizeable)
-    backToMainScreenButton = Button(r, text="Back",width=10, command=lambda:[button_click_sound(),r.destroy(), mainScreen()])
-    backToMainScreenButton.pack()
+    
+    Label(r, text="Task Id to Remove : ").grid(row=0,column=0)
+    e1 = Entry(r)
+    e1.grid(row=0,column=1)
+
+    Button(r, text="Remove",width=10, command=lambda:[
+        button_click_sound(),
+        removeTask(e1.get()),
+        e1.delete(0,END)
+        ]).grid(row=1,column=1)
+
+    Button(r, text="Back",width=10, command=lambda:[button_click_sound(),r.destroy(), mainScreen()]).grid(row=2,column=1)
+
     r.mainloop()
 
 def mainScreen():

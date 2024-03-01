@@ -1,11 +1,26 @@
-# ToDoList-1
+# To-Do List Project
 
-Task Class: Start by creating a Task class to represent individual tasks. Each task can have attributes like a title, description, due date, priority, etc.
+## Overview
+This project is a simple To-Do List application implemented in Python using the Tkinter library for the graphical user interface (GUI). It allows users to add, view, and remove tasks from a CSV file.
 
-Task Manager Class: Create a TaskManager class that will manage all the tasks. This class should have methods to add tasks, remove tasks, mark tasks as completed, display all tasks, display tasks by priority or due date, etc.
+## Features
+- **Add Task:** Users can add tasks to the To-Do List by providing the task name, description, and due date.
+- **View Tasks:** Users can view all tasks in the To-Do List along with their task IDs, due dates, names, and descriptions.
+- **Remove Task:** Users can remove a task from the To-Do List by specifying its task ID.
+- **Sound Effects:** The application features button click sounds using the `playsound` library.
 
-User Interface: You can create a simple command-line interface (CLI) where users can interact with your task manager. Allow them to add tasks, remove tasks, mark tasks as completed, and view their tasks in different ways.
+## Requirements
+- Python 3.x
+- Tkinter (usually comes pre-installed with Python)
+- `playsound` library (install using `pip install playsound`)
 
-Persistence: Optionally, you can add functionality to save tasks to a file so that users can access them even after closing the application. You can use JSON or a simple text format for this purpose.
+## Usage
+1. Clone or download the project repository.
+2. Navigate to the project directory.
+3. Run the `todo_list.py` file using Python.
+4. The main screen of the To-Do List application will appear, providing options to view tasks, add tasks, remove tasks, or quit the application.
+5. Follow the on-screen instructions to interact with the To-Do List.
 
-Additional Features: Depending on your interest and time, you can add more features like task categories, reminders, notifications, or even a graphical user interface (GUI) using libraries like Tkinter or PyQt.
+## File Structure
+- **`todo_list.py`:** The main Python script containing the implementation of the To-Do List application.
+- **`/required files`:** Directory containing required files for the application, including the CSV database file and button click sound.
