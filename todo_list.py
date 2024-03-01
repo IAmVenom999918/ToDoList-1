@@ -4,11 +4,6 @@ from playsound import playsound # pip install playsound
 
 databasePath = 'ToDoList-1/required files/databasecsv.csv'
 buttonSoundPath = 'ToDoList-1/required files/Instant Sound Buttons 180.mp3'
-# file = open('ToDoList-1/databasecsv.csv', 'a+')
-# csvFileReader = csv.reader(file)
-# csvFileWriter = csv.writer(file)
-# file.close()
-
 
 # BACK END
 
