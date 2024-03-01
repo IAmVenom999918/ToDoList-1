@@ -1,5 +1,5 @@
 # ToDoList-1
-
+change 1
 Task Class: Start by creating a 'Task' class to represent individual tasks. Each task can have attributes like a title, description, due date, etc.
 
 Task Manager Class: Create a 'TaskManager' class that will manage all the tasks. This class should have methods to add tasks, remove tasks, mark tasks as completed, display all tasks, display tasks by priority or due date, etc.
