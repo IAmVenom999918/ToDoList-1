@@ -23,4 +23,4 @@ This project is a simple To-Do List application implemented in Python using the 
 
 ## File Structure
 - **`todo_list.py`:** The main Python script containing the implementation of the To-Do List application.
-- **`/required files`:** Directory containing required files for the application, including the CSV database file and button click sound.
+- **`/required files`:** Directory containing required files for the application, including the CSV database file and button click sound (DONT OPEN THESE FILES).
